@@ -1,2 +1,7 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 @import './custom.scss';
+
+body { 
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+  }

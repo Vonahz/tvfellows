@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
+
     {
         path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
-    {
-        path: 'home',
-        component: HomeComponent
+        component: FullLayoutComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'home',
+                pathMatch: 'full'
+            },
+            {
+                path: 'home',
+                component: HomeComponent
+            }
+        ]
     }
 ];
 
