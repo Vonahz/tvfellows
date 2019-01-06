@@ -1,4 +1,17 @@
-body { 
-    background: #1e1e1e;
-    color: #cdffdd;
+$backgroundColor: #1e1e1e;
+$fontColor: #cdffdd;
+body {
+    background: $backgroundColor;
+    color: $fontColor;
+    h3 {
+        font-weight: 300;
+        margin: 0;
+        padding: 28px 8px 0;
+        font-size: 20px;
+        color: #fff;
+    }
+    a {
+        font-weight: bold;
+        color: $fontColor;
+    }
 }

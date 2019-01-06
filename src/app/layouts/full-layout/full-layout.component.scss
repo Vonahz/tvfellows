@@ -1,37 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 
-.menu-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
+.sidebar {
+    grid-area: sidebar;
+}
+
+.aside {
+    grid-area: aside;
+}
+
+.content {
+    grid-area: content;
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding-left: 40px;
-}
-
-.container {
-    position: absolute;
-    top: 60px;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-    .side-nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 200px;
-        background: rgba(255, 0, 0, 0.5);
-    }
+    grid-area: header;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    grid-area: footer;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas: "header" "sidebar" "content" "aside" "footer"
+}
+
+@media only screen and (min-width: 500px) {
+    .wrapper {
+        grid-template-columns: 20% auto;
+        grid-template-areas: "header   header" "sidebar  content" "aside aside" "footer   footer";
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .wrapper {
+        grid-gap: 20px;
+        grid-template-columns: 120px auto 120px;
+        grid-template-areas: "header  header  header" "sidebar content aside" "footer  footer  footer";
+        width: 100%;
+    }
 }
