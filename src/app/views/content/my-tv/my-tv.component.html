@@ -1,0 +1,31 @@
+<div *ngIf="userHasTVs; else noTVs">
+  <div class="container-fluid mb-2">
+    <button class="btn btn-secondary" (click)="deleteAllTVs()">Clear List</button>
+  </div>
+  <div class="container-fluid">
+    <div *ngFor="let tvShow of tvs; let index = index" class="card text-white bg-secondary mb-2">
+      <div class="row no-gutters">
+        <div class="col-auto">
+          <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
+        </div>
+        <div class="col">
+          <div class="card-block px-2">
+            <h5 class="card-title">{{index + 1}}. {{tvShow.name}} |
+              <span *ngIf="tvShow.next_episode_to_air?.air_date">Next episode: </span>{{tvShow.next_episode_to_air?.air_date}}
+            </h5>
+            <div class="card-text">
+              <div>{{tvShow.overview}}</div>
+            </div>
+            <button class="btn btn-dark" (click)="unfollow(tvShow.id)">Unfollow</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #noTVs>
+  Hello Fellow! You can follow some TV from <a href="#" [routerLink]="['/tv/popular-tv']" routerLinkActive="router-link-active">
+    here</a> first :).
+</ng-template>

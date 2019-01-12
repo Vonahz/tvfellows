@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div *ngFor="let tvShow of topTvShows; let index = index" class="card text-white bg-secondary mb-2">
+    <div class="row no-gutters">
+      <div class="col-auto">
+        <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
+      </div>
+      <div class="col">
+        <div class="card-block px-2">
+          <h5 class="card-title">{{index + 1}}. {{tvShow.name}}</h5>
+          <div class="card-text">
+            <div>{{tvShow.overview}}</div>
+          </div>
+          <button class="btn btn-dark" (click)="follow(tvShow.id)">Follow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

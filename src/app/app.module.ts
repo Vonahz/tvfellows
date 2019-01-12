@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { ContentComponent } from './views/content/content.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 
 import { TdbService } from './services/tmdb/tdb.service';
@@ -19,7 +18,6 @@ import { AsideComponent } from './views/aside/aside.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContentComponent,
     FullLayoutComponent,
     HeaderComponent,
     SidebarComponent,

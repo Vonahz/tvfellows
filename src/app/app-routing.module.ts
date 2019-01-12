@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
-import { ContentComponent } from './views/content/content.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
@@ -13,12 +12,12 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'home',
+                redirectTo: 'tv',
                 pathMatch: 'full'
             },
             {
-                path: 'home',
-                component: ContentComponent
+                path: 'tv',
+                loadChildren: './views/content/content.module#ContentModule'
             }
         ]
     }

@@ -1,17 +1,26 @@
 $backgroundColor: #1e1e1e;
-$fontColor: #cdffdd;
+$fontColor: #ecfff2;
+
 body {
-    background: $backgroundColor;
+  background: $backgroundColor;
+  color: $fontColor;
+
+  h3 {
+    font-weight: 300;
+    margin: 0;
+    padding: 28px 8px 0;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  a {
+    font-weight: bold;
     color: $fontColor;
-    h3 {
-        font-weight: 300;
-        margin: 0;
-        padding: 28px 8px 0;
-        font-size: 20px;
-        color: #fff;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $fontColor !important;
     }
-    a {
-        font-weight: bold;
-        color: $fontColor;
-    }
+  }
 }

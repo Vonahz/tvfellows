@@ -3,8 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://api.themoviedb.org/3/tv',
+  apiKey: '6917fecb06f478c815ac557c6dbeed65',
+  imagesUrl: 'https://image.tmdb.org/t/p',
 };
+
 
 /*
  * In development mode, to ignore zone related error stack frames such as
