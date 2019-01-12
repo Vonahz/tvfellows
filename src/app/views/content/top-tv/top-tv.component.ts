@@ -16,10 +16,10 @@ export class TopTvComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.tmdb.page = 1;
     this.topTVSub = this.tmdb.getTopTvShows().subscribe((res: any) => {
       if (res) {
         this.topTvShows = res.results;
-        console.log(this.topTvShows);
       }
     },
       error => console.error(error));
@@ -31,6 +31,16 @@ export class TopTvComponent implements OnInit, OnDestroy {
 
   follow(id: number) {
     this.tmdb.followTv(id);
+  }
+
+  onScroll() {
+    this.tmdb.page++;
+    this.topTVSub = this.tmdb.getPopularTvShows().subscribe((res: any) => {
+      if (res) {
+        this.topTvShows = [...this.topTvShows, ...res.results];
+      }
+    },
+      error => console.error(error));
   }
 
   ngOnDestroy(): void {

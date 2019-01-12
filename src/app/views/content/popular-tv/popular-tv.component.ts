@@ -9,17 +9,17 @@ import { Subscription } from 'rxjs';
 })
 export class PopularTvComponent implements OnInit, OnDestroy {
   popularSub: Subscription = new Subscription();
-  topTvShows: Array<any> = [];
+  popularTvShows: Array<any> = [];
   imageMainUrl: string;
   constructor(
     private tmdb: TdbService
   ) { }
 
   ngOnInit() {
+    this.tmdb.page = 1;
     this.popularSub = this.tmdb.getPopularTvShows().subscribe((res: any) => {
       if (res) {
-        this.topTvShows = res.results;
-        console.log(this.topTvShows);
+        this.popularTvShows = res.results;
       }
     },
       error => console.error(error));
@@ -31,6 +31,16 @@ export class PopularTvComponent implements OnInit, OnDestroy {
 
   follow(id: number) {
     this.tmdb.followTv(id);
+  }
+
+  onScroll() {
+    this.tmdb.page++;
+    this.popularSub = this.tmdb.getPopularTvShows().subscribe((res: any) => {
+      if (res) {
+        this.popularTvShows = [...this.popularTvShows, ...res.results];
+      }
+    },
+      error => console.error(error));
   }
 
   ngOnDestroy(): void {

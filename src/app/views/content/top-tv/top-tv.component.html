@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
   <div *ngFor="let tvShow of topTvShows; let index = index" class="card text-white bg-secondary mb-2">
     <div class="row no-gutters">
       <div class="col-auto">
