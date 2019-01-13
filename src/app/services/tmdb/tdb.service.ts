@@ -3,14 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-const topTVUrl = `${environment.apiUrl}/top_rated`;
-const tvDetailsUrl = `${environment.apiUrl}`;
-const popularTVUrl = `${environment.apiUrl}/popular`;
+const apiUrl = environment.apiUrl;
+const topTVUrl = `${apiUrl}/top_rated`;
+const popularTVUrl = `${apiUrl}/popular`;
 
-
-const IMAGES_URL_W92 = "https://image.tmdb.org/t/p/w92/" // + 'image url'
-const IMAGES_URL_W200 = "https://image.tmdb.org/t/p/w200/" // + 'image url'
-
+const postersUrl = environment.postersUrl;
+const IMAGES_URL_W92 = `${environment.postersUrl}/w92/`
+const IMAGES_URL_W200 = `${environment.postersUrl}/w200/`;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class TdbService {
   language: string = 'en-US';
   page: number = 1;
 
-  userTVIDs: number[] = [];
+  userTvIds: number[] = [];
 
   userTVDetailsSubj: BehaviorSubject<any[]> = new BehaviorSubject([]);
   userTVDetailsData: any[] = [];
@@ -29,7 +28,7 @@ export class TdbService {
     private http: HttpClient
   ) {
     if (localStorage.getItem('tvs')) {
-      this.userTVIDs = JSON.parse(localStorage.getItem('tvs'));
+      this.userTvIds = JSON.parse(localStorage.getItem('tvs'));
     }
   }
 
@@ -42,7 +41,7 @@ export class TdbService {
   }
 
   getTVDetails(id: number): any {
-    return this.http.get(`${tvDetailsUrl}/${id}?api_key=${environment.apiKey}&&language=${this.language}`);
+    return this.http.get(`${apiUrl}/${id}?api_key=${environment.apiKey}&&language=${this.language}`);
   }
 
   getImageMainUrl(imgUrl: string): string {
@@ -50,21 +49,29 @@ export class TdbService {
   }
 
   followTv(tvID: number) {
-    if (this.userTVIDs.indexOf(tvID) === -1) {
-      this.userTVIDs.push(tvID);
-      localStorage.setItem('tvs', JSON.stringify(this.userTVIDs));
+    if (this.userTvIds.indexOf(tvID) === -1) {
+      this.userTvIds.push(tvID);
+      localStorage.setItem('tvs', JSON.stringify(this.userTvIds));
     }
   }
 
   removeTv(tvID: number) {
-    if (this.userTVIDs.indexOf(tvID) > -1) {
-      this.userTVIDs.splice(this.userTVIDs.indexOf(tvID), 1);
+    if (this.userTvIds.indexOf(tvID) > -1) {
+      this.userTvIds.splice(this.userTvIds.indexOf(tvID), 1);
     }
-    localStorage.setItem('tvs', JSON.stringify(this.userTVIDs))
+    localStorage.setItem('tvs', JSON.stringify(this.userTvIds))
   }
 
   hasTVs() {
-    if (this.userTVIDs.length > 0) {
+    if (this.userTvIds.length > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  isUserFollowingThisTVID(id: number) {
+    if (this.userTvIds.indexOf(id) > -1) {
       return true;
     }
 
@@ -72,9 +79,10 @@ export class TdbService {
   }
 
   getMyTVDetails(): Observable<any[]> {
+    console.log(this.userTvIds);
     this.userTVDetailsData = [];
     this.userTVDetailsSubj.next(this.userTVDetailsData);
-    this.userTVIDs.forEach((tvID: number) => {
+    this.userTvIds.forEach((tvID: number) => {
       this.getTVDetails(tvID).subscribe(
         (tvDetails: any) => {
           this.userTVDetailsData.push(tvDetails);
@@ -88,6 +96,6 @@ export class TdbService {
 
   clearMyTVs() {
     localStorage.removeItem('tvs');
-    this.userTVIDs = [];
+    this.userTvIds = [];
   }
 }

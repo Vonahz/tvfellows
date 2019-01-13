@@ -30,7 +30,12 @@ export class PopularTvComponent implements OnInit, OnDestroy {
   }
 
   follow(id: number) {
+    console.log(id)
     this.tmdb.followTv(id);
+  }
+
+  isAlreadyFollowed(id: number): boolean {
+    return this.tmdb.isUserFollowingThisTVID(id);
   }
 
   onScroll() {

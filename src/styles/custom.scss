@@ -5,6 +5,10 @@ body {
   background: $backgroundColor;
   color: $fontColor;
 
+  img {
+    border: 0;
+  }
+
   h3 {
     font-weight: 300;
     margin: 0;

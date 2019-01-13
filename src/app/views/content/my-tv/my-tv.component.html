@@ -12,6 +12,9 @@
           <div class="card-block px-2">
             <h5 class="card-title">{{index + 1}}. {{tvShow.name}}
               <span *ngIf="tvShow.next_episode_to_air?.air_date"> | Next episode: </span>{{tvShow.next_episode_to_air?.air_date}}
+              <div class="float-right">
+                <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
+              </div>
             </h5>
             <div class="card-text">
               <div>{{tvShow.overview}}</div>
