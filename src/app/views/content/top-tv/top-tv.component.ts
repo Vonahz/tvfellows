@@ -32,6 +32,10 @@ export class TopTvComponent implements OnInit, OnDestroy {
   follow(id: number) {
     this.tmdb.followTv(id);
   }
+  
+  isAlreadyFollowed(id: number): boolean {
+    return this.tmdb.isUserFollowingThisTVID(id);
+  }
 
   onScroll() {
     this.tmdb.page++;

@@ -52,14 +52,16 @@ export class TdbService {
     if (this.userTvIds.indexOf(tvID) === -1) {
       this.userTvIds.push(tvID);
       localStorage.setItem('tvs', JSON.stringify(this.userTvIds));
+      this.getMyTVDetails();
     }
   }
 
   removeTv(tvID: number) {
     if (this.userTvIds.indexOf(tvID) > -1) {
       this.userTvIds.splice(this.userTvIds.indexOf(tvID), 1);
+      localStorage.setItem('tvs', JSON.stringify(this.userTvIds));
+      this.getMyTVDetails();
     }
-    localStorage.setItem('tvs', JSON.stringify(this.userTvIds))
   }
 
   hasTVs() {
@@ -79,7 +81,6 @@ export class TdbService {
   }
 
   getMyTVDetails(): Observable<any[]> {
-    console.log(this.userTvIds);
     this.userTVDetailsData = [];
     this.userTVDetailsSubj.next(this.userTVDetailsData);
     this.userTvIds.forEach((tvID: number) => {
@@ -91,7 +92,14 @@ export class TdbService {
       )
     });
 
+    this.numberOfMyTvsObs();
     return this.userTVDetailsSubj.asObservable();
+  }
+
+  myTvsCounter: BehaviorSubject<number> = new BehaviorSubject(null);
+  numberOfMyTvsObs(): Observable<number> {
+    this.myTvsCounter.next(this.userTvIds.length);
+    return this.myTvsCounter.asObservable();
   }
 
   clearMyTVs() {

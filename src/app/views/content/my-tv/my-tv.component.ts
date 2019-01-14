@@ -28,7 +28,6 @@ export class MyTvComponent implements OnInit, OnDestroy {
   deleteAllTVs() {
     this.tmdb.clearMyTVs();
     this.userHasTVs = this.tmdb.hasTVs();
-    this.tmdb.getMyTVDetails();
   }
 
   getImageUrl(imgUrl: string) {
@@ -38,7 +37,6 @@ export class MyTvComponent implements OnInit, OnDestroy {
   unfollow(id : number) : void {
     this.tmdb.removeTv(id);
     this.userHasTVs = this.tmdb.hasTVs();
-    this.tmdb.getMyTVDetails();
   }
 
   ngOnDestroy(): void {

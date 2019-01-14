@@ -15,7 +15,9 @@
           <div class="card-text">
             <div>{{tvShow.overview}}</div>
           </div>
-          <button class="btn btn-dark" (click)="follow(tvShow.id)">Follow</button>
+          <button [disabled]="isAlreadyFollowed(tvShow.id)" class="btn btn-dark" (click)="follow(tvShow.id)">
+            {{!isAlreadyFollowed(tvShow.id)? 'Follow' : 'Following...'}}
+          </button>
         </div>
       </div>
     </div>
