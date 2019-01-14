@@ -1,20 +1,22 @@
 <div class="container-fluid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-  <div *ngFor="let tvShow of popularTvShows; let index = index" class="card text-white bg-secondary mb-2">
+  <div *ngFor="let tvShow of popularTvShows; let index = index" class="card tv-show text-white bg-secondary mb-2">
     <div class="row no-gutters">
       <div class="col-auto">
         <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
       </div>
       <div class="col">
         <div class="card-block px-2">
-          <h5 class="card-title">
-            {{index + 1}}. {{tvShow.name}}
+          <div class="card-title clearfix">
             <div class="float-right">
               <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
             </div>
-          </h5>
+            <h5>{{index + 1}}. {{tvShow.name}}</h5>
+          </div>
           <div class="card-text">
             <div>{{tvShow.overview}}</div>
           </div>
+        </div>
+        <div class="card-footer text-right">
           <button [disabled]="isAlreadyFollowed(tvShow.id)" class="btn btn-dark" (click)="follow(tvShow.id)">
             {{!isAlreadyFollowed(tvShow.id)? 'Follow' : 'Following...'}}
           </button>

@@ -3,22 +3,28 @@
     <button class="btn btn-secondary" (click)="deleteAllTVs()">Clear List</button>
   </div>
   <div class="container-fluid">
-    <div *ngFor="let tvShow of tvs; let index = index" class="card text-white bg-secondary mb-2">
+    <div *ngFor="let tvShow of tvs; let index = index" class="card my-tv-show text-white bg-secondary mb-2">
       <div class="row no-gutters">
-        <div class="col-auto">
+        <div class="col-auto m-auto">
           <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
         </div>
         <div class="col">
           <div class="card-block px-2">
-            <h5 class="card-title">{{index + 1}}. {{tvShow.name}}
-              <span *ngIf="tvShow.next_episode_to_air?.air_date"> | Next episode: </span>{{tvShow.next_episode_to_air?.air_date}}
+            <div class="card-title clearfix">
               <div class="float-right">
                 <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
               </div>
-            </h5>
-            <div class="card-text">
+              <h5>{{index + 1}}. {{tvShow.name}}</h5>
+              <div *ngIf="tvShow.next_episode_to_air?.air_date">Next episode:
+                S{{tvShow.next_episode_to_air.season_number}}E{{tvShow.next_episode_to_air.episode_number}}
+                {{tvShow.next_episode_to_air?.air_date}}
+              </div>
+            </div>
+            <div class="card-text pt-3 pb-3">
               <div>{{tvShow.overview}}</div>
             </div>
+          </div>
+          <div class="card-footer text-right">
             <button class="btn btn-dark" (click)="unfollow(tvShow.id)">Unfollow</button>
           </div>
         </div>
