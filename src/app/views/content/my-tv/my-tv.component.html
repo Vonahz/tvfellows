@@ -15,13 +15,19 @@
                 <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
               </div>
               <h5>{{index + 1}}. {{tvShow.name}}</h5>
-              <div *ngIf="tvShow.next_episode_to_air?.air_date">Next episode:
-                S{{tvShow.next_episode_to_air.season_number}}E{{tvShow.next_episode_to_air.episode_number}}
-                {{tvShow.next_episode_to_air?.air_date}}
+              <div *ngIf="tvShow.next_episode_to_air?.name">Name:
+                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.name}}</span>
               </div>
-            </div>
-            <div class="card-text pt-3 pb-3">
-              <div>{{tvShow.overview}}</div>
+              <div *ngIf="tvShow.next_episode_to_air?.episode_number">Next episode:
+                <span class="font-weight-bold">Season {{tvShow.next_episode_to_air.season_number}} | Episode
+                  {{tvShow.next_episode_to_air.episode_number}}</span>
+              </div>
+              <div *ngIf="tvShow.next_episode_to_air?.air_date">Air date:
+                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.air_date}}</span>
+              </div>
+              <div *ngIf="tvShow.next_episode_to_air?.overview">Overview:
+                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.overview}}</span>
+              </div>
             </div>
           </div>
           <div class="card-footer text-right">
@@ -35,6 +41,7 @@
 </div>
 
 <ng-template #noTVs>
-  Hello Fellow! You can follow some TV from <a href="#" [routerLink]="['/tv/popular-tv']" routerLinkActive="router-link-active">
+  Hello Fellow! You can follow some TV from <a href="#" [routerLink]="['/tv/popular-tv']"
+    routerLinkActive="router-link-active">
     here</a> first :).
 </ng-template>
