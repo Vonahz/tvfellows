@@ -45,7 +45,7 @@ export class TdbService {
   }
 
   getImageMainUrl(imgUrl: string): string {
-    return IMAGES_URL_W200 + imgUrl;
+    return IMAGES_URL_W92 + imgUrl;
   }
 
   followTv(tvID: number) {
@@ -105,5 +105,6 @@ export class TdbService {
   clearMyTVs() {
     localStorage.removeItem('tvs');
     this.userTvIds = [];
+    this.myTvsCounter.next(0);
   }
 }
