@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { ErrorComponent } from './views/error/error.component';
 
 const routes: Routes = [
 
@@ -17,10 +18,14 @@ const routes: Routes = [
             },
             {
                 path: 'tv',
-                loadChildren: './views/content/content.module#ContentModule'
-            }
+                loadChildren: () => import(`./views/content/content.module`).then(m => m.ContentModule)
+            }, 
+            {
+                path: 'error',
+                component: ErrorComponent
+            },
         ]
-    }
+    },
 ];
 
 @NgModule({

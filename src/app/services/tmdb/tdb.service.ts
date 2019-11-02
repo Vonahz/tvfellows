@@ -50,6 +50,7 @@ export class TdbService {
 
   getImageMainUrl(imgUrl: string): string {
     // return IMAGES_URL_W92 + imgUrl;
+    return '';
   }
 
   followTv(tvID: number) {

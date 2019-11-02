@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
 import { TdbService } from 'src/app/services/tmdb/tdb.service';
 
 @Injectable({
@@ -22,7 +24,7 @@ export class AuthGuard implements CanActivate {
         }
       }),
       catchError((err) => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/error']);
         return of(false);
       })
     );

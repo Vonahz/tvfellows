@@ -14,6 +14,7 @@ import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { AsideComponent } from './views/aside/aside.component';
+import { ErrorComponent } from './views/error/error.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AsideComponent } from './views/aside/aside.component';
     HeaderComponent,
     SidebarComponent,
     AsideComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
