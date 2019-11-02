@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Configuration } from 'src/app/models/tdb/configuration.model';
 
 const apiUrl = environment.apiUrl;
 const topTVUrl = `${apiUrl}/top_rated`;
 const popularTVUrl = `${apiUrl}/popular`;
-
+const configurationUrl = `${apiUrl}/configuration`;
 const postersUrl = environment.postersUrl;
-const IMAGES_URL_W92 = `${environment.postersUrl}/w92/`
-const IMAGES_URL_W200 = `${environment.postersUrl}/w200/`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class TdbService {
 
+  mainSettings: Configuration;
   language: string = 'en-US';
   page: number = 1;
 
@@ -32,6 +32,10 @@ export class TdbService {
     }
   }
 
+  getMainSettings() {
+    return this.http.get(`${configurationUrl}?api_key=${environment.apiKey}`);
+  }
+
   getTopTvShows(): any {
     return this.http.get(`${topTVUrl}?api_key=${environment.apiKey}&&language=${this.language}&&page=${this.page}`);
   }
@@ -45,7 +49,7 @@ export class TdbService {
   }
 
   getImageMainUrl(imgUrl: string): string {
-    return IMAGES_URL_W92 + imgUrl;
+    // return IMAGES_URL_W92 + imgUrl;
   }
 
   followTv(tvID: number) {
