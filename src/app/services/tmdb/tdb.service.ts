@@ -48,7 +48,7 @@ export class TdbService {
   }
 
   getTVDetails(id: number): any {
-    return this.http.get(`${apiUrl}/${id}?api_key=${environment.apiKey}&&language=${this.language}`);
+    return this.http.get(`${apiUrl}/tv/${id}?api_key=${environment.apiKey}&&language=${this.language}`);
   }
 
   getImageMainUrl(imgUrl: string, size?: string): string {
