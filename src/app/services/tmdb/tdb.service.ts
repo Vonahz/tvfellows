@@ -3,10 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Configuration } from 'src/app/models/tdb/configuration.model';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const apiUrl = environment.apiUrl;
-const topTVUrl = `${apiUrl}/top_rated`;
-const popularTVUrl = `${apiUrl}/popular`;
+const topTVUrl = `${apiUrl}/tv/top_rated`;
+const popularTVUrl = `${apiUrl}/tv/popular`;
 const configurationUrl = `${apiUrl}/configuration`;
 const postersUrl = environment.postersUrl;
 
@@ -15,7 +17,7 @@ const postersUrl = environment.postersUrl;
 })
 export class TdbService {
 
-  mainSettings: Configuration;
+  configuration: Configuration;
   language: string = 'en-US';
   page: number = 1;
 
@@ -25,7 +27,8 @@ export class TdbService {
   userTVDetailsData: any[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     if (localStorage.getItem('tvs')) {
       this.userTvIds = JSON.parse(localStorage.getItem('tvs'));
@@ -48,9 +51,8 @@ export class TdbService {
     return this.http.get(`${apiUrl}/${id}?api_key=${environment.apiKey}&&language=${this.language}`);
   }
 
-  getImageMainUrl(imgUrl: string): string {
-    // return IMAGES_URL_W92 + imgUrl;
-    return '';
+  getImageMainUrl(imgUrl: string, size?: string): string {
+    return `${postersUrl}/${this.configuration.images.poster_sizes[size || 0]}/${imgUrl}`;
   }
 
   followTv(tvID: number) {

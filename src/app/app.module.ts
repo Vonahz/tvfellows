@@ -31,7 +31,7 @@ import { ErrorComponent } from './views/error/error.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   providers: [TdbService],
   bootstrap: [AppComponent]

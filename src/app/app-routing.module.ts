@@ -9,7 +9,6 @@ const routes: Routes = [
     {
         path: '',
         component: FullLayoutComponent,
-        canActivate: [AuthGuard],
         children: [
             {
                 path: '',
@@ -18,6 +17,7 @@ const routes: Routes = [
             },
             {
                 path: 'tv',
+                canActivate: [AuthGuard],
                 loadChildren: () => import(`./views/content/content.module`).then(m => m.ContentModule)
             }, 
             {
