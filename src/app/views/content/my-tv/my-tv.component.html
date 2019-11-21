@@ -14,19 +14,30 @@
               <div class="float-right">
                 <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
               </div>
-              <h5>{{index + 1}}. {{tvShow.name}}</h5>
-              <div *ngIf="tvShow.next_episode_to_air?.name">Name:
-                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.name}}</span>
+              <span class="h5">
+                {{index + 1}}. {{tvShow.name}}
+                <span *ngIf="tvShow.next_episode_to_air.season_number">
+                  S{{tvShow.next_episode_to_air.season_number}}
+                </span>
+                <span *ngIf="tvShow.next_episode_to_air.episode_number">
+                  E{{tvShow.next_episode_to_air.episode_number}}
+                </span>
+
+              </span>
+              <span *ngIf="tvShow.next_episode_to_air?.name">
+                - {{tvShow.next_episode_to_air?.name}}
+              </span>
+
+
+              <div *ngIf="tvShow.next_episode_to_air?.air_date">
+                <span *ngIf="tvShow.next_episode_to_air?.air_date">
+                  <span class="font-weight-bold">Air: </span>
+                  <span>{{tvShow.next_episode_to_air?.air_date}}</span>
+                </span>
               </div>
-              <div *ngIf="tvShow.next_episode_to_air?.episode_number">Next episode:
-                <span class="font-weight-bold">Season {{tvShow.next_episode_to_air.season_number}} | Episode
-                  {{tvShow.next_episode_to_air.episode_number}}</span>
-              </div>
-              <div *ngIf="tvShow.next_episode_to_air?.air_date">Air date:
-                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.air_date}}</span>
-              </div>
-              <div *ngIf="tvShow.next_episode_to_air?.overview">Overview:
-                <span class="font-weight-bold">{{tvShow.next_episode_to_air?.overview}}</span>
+              <div *ngIf="tvShow.next_episode_to_air?.overview">
+                <span class="font-weight-bold">Overview: </span>
+                <span>{{tvShow.next_episode_to_air?.overview}}</span>
               </div>
             </div>
           </div>
