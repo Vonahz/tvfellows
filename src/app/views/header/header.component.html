@@ -17,5 +17,18 @@
         </a>
       </li>
     </ul>
+    <div class="ml-5 float-right">
+      <div class="input-wrapper w-100">
+        <div class="input-group">
+          <span class="input-group-prepend">
+            <div class="input-group-text border-0 pr-1" id="search-icon-holder">
+              <i class="fa fa-search"></i>
+            </div>
+          </span>
+          <input [(ngModel)]="inputValue" class="form-control py-2 border-0" type="text" name="search" autocomplete="off"
+            placeholder="Search for a TV Show" id="search-input" required="" (keydown)="onKeydown($event)">
+        </div>
+      </div>
+    </div>
   </div>
 </nav>

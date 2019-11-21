@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { MyTvComponent } from "./my-tv/my-tv.component";
 import { TopTvComponent } from "./top-tv/top-tv.component";
 import { PopularTvComponent } from "./popular-tv/popular-tv.component";
+import { SearchComponent } from "./search/search.component";
 
 const routes: Routes = [
     {
@@ -27,6 +28,13 @@ const routes: Routes = [
                 component: PopularTvComponent,
                 data: {
                     title: 'Popular TV'
+                }
+            },
+            {
+                path: 'search/:query',
+                component: SearchComponent,
+                data: {
+                    title: 'Search'
                 }
             },
             {

@@ -14,24 +14,26 @@ import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { SidebarComponent } from './views/sidebar/sidebar.component';
 import { AsideComponent } from './views/aside/aside.component';
-import { ErrorComponent } from './views/error/error.component';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared.module';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule,
+    SharedModule
+  ],
   declarations: [
     AppComponent,
     FullLayoutComponent,
     HeaderComponent,
     SidebarComponent,
     AsideComponent,
-    FooterComponent,
-    ErrorComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule
+    FooterComponent
   ],
   providers: [TdbService],
   bootstrap: [AppComponent]

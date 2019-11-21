@@ -1,3 +1,22 @@
 .nav-link.active {
     text-shadow: 1px 2px 13px #fff;
 }
+
+#search-input {
+    background-color: #1e1e1e !important;
+    color: #ecfff2 !important;
+}
+
+.input-group-text {
+    background-color: #1e1e1e !important;
+}
+
+#search-input:active,
+#search-input:focus,
+#search-input:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}

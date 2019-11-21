@@ -31,7 +31,7 @@ export class MyTvComponent implements OnInit, OnDestroy {
   }
 
   getImageUrl(imgUrl: string) {
-    return this.tmdb.getImageMainUrl(imgUrl, '1');
+    return this.tmdb.getImageMainUrl(imgUrl);
   }
 
   unfollow(id : number) : void {

@@ -7,6 +7,7 @@ import { Configuration } from 'src/app/models/tdb/configuration.model';
 const apiUrl = environment.apiUrl;
 const topTVUrl = `${apiUrl}/tv/top_rated`;
 const popularTVUrl = `${apiUrl}/tv/popular`;
+const searchTVUrl = `${apiUrl}/search/tv`;
 const configurationUrl = `${apiUrl}/configuration`;
 const postersUrl = environment.postersUrl;
 
@@ -52,7 +53,7 @@ export class TdbService {
     return `${postersUrl}/${this.configuration.images.poster_sizes[size || 0]}/${imgUrl}`;
   }
 
-  followTv(tvID: number) : void {
+  followTv(tvID: number): void {
     if (this.userTvIds.indexOf(tvID) === -1) {
       this.userTvIds.push(tvID);
       localStorage.setItem('tvs', JSON.stringify(this.userTvIds));
@@ -110,5 +111,10 @@ export class TdbService {
     localStorage.removeItem('tvs');
     this.userTvIds = [];
     this.myTvsCounter.next(0);
+  }
+
+  search(query: string): Observable<any> {
+    return this.http.get(`${searchTVUrl}?api_key=${environment.apiKey}&&language=${this.language}&&page=${this.page}&&query=${query}`);
+
   }
 }

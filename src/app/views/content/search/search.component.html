@@ -1,0 +1,44 @@
+<div *ngIf="dataIsAvailable; else loading">
+    <div class="container-fluid mb-2">
+        <h1 class="h5">Search results for: <span class="font-weight-bold h3">{{query}}</span></h1>
+    </div>
+    <div class="container-fluid">
+        <ng-container *ngIf="tvs.length > 0; else noResults">
+            <div *ngFor="let tvShow of tvs; let index = index" class="card tv-show text-white bg-secondary mb-2">
+                <div class="row no-gutters">
+                    <div class="col-auto">
+                        <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
+                    </div>
+                    <div class="col">
+                        <div class="card-block px-2">
+                            <div class="card-title clearfix">
+                                <div class="float-right">
+                                    <i class="fa fa-star mr-2"></i>{{tvShow.vote_average}}
+                                </div>
+                                <h5>{{index + 1}}. {{tvShow.name}}</h5>
+                            </div>
+                            <div class="card-text">
+                                <div>{{tvShow.overview}}</div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button [disabled]="isAlreadyFollowed(tvShow.id)" class="btn btn-dark btn-follow"
+                                (click)="follow(tvShow.id)">
+                                {{!isAlreadyFollowed(tvShow.id)? 'Follow' : 'Following...'}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>
+
+<ng-template #noResults>
+    <app-error message='No results were found or there was an issue gathering and processing results.'></app-error>
+</ng-template>
