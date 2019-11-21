@@ -26,7 +26,7 @@ export class TopTvComponent implements OnInit, OnDestroy {
   }
 
   getImageUrl(imgUrl: string) {
-    return this.tmdb.getImageMainUrl(imgUrl);
+    return this.tmdb.getImageMainUrl(imgUrl, '1');
   }
 
   follow(id: number) {

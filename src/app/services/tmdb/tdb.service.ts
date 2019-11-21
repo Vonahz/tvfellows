@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Configuration } from 'src/app/models/tdb/configuration.model';
-import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 const apiUrl = environment.apiUrl;
 const topTVUrl = `${apiUrl}/tv/top_rated`;
@@ -27,8 +25,7 @@ export class TdbService {
   userTVDetailsData: any[] = [];
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) {
     if (localStorage.getItem('tvs')) {
       this.userTvIds = JSON.parse(localStorage.getItem('tvs'));
@@ -55,7 +52,7 @@ export class TdbService {
     return `${postersUrl}/${this.configuration.images.poster_sizes[size || 0]}/${imgUrl}`;
   }
 
-  followTv(tvID: number) {
+  followTv(tvID: number) : void {
     if (this.userTvIds.indexOf(tvID) === -1) {
       this.userTvIds.push(tvID);
       localStorage.setItem('tvs', JSON.stringify(this.userTvIds));
