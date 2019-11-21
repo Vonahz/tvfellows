@@ -10,15 +10,24 @@ const routes: Routes = [
         children: [
             {
                 path: 'my-tv',
-                component: MyTvComponent
+                component: MyTvComponent,
+                data: {
+                    title: 'My TV'
+                }
             },
             {
                 path: 'top-tv',
-                component: TopTvComponent
+                component: TopTvComponent,
+                data: {
+                    title: 'Top TV'
+                }
             },
             {
                 path: 'popular-tv',
-                component: PopularTvComponent
+                component: PopularTvComponent,
+                data: {
+                    title: 'Popular TV'
+                }
             },
             {
                 path: '',
