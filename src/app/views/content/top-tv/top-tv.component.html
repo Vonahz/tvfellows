@@ -1,8 +1,8 @@
 <div class="container-fluid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
   (scrolled)="onScroll()">
-  <div *ngFor="let tvShow of topTvShows; let index = index" class="card tv-show text-white bg-secondary mb-2">
-    <h1 class="h5">Top TV</h1>
+  <h1 class="h5">Top TV</h1>
 
+  <div *ngFor="let tvShow of topTvShows; let index = index" class="card tv-show text-white bg-secondary mb-2">
     <div class="row no-gutters">
       <div class="col-auto">
         <img [src]="getImageUrl(tvShow.poster_path)" class="img-fluid" [alt]="tvShow.name">
