@@ -17,10 +17,10 @@
               </div>
               <span class="h5">
                 {{index + 1}}. {{tvShow.name}}
-                <span *ngIf="tvShow.next_episode_to_air.season_number">
+                <span *ngIf="tvShow.next_episode_to_air?.season_number">
                   S{{tvShow.next_episode_to_air.season_number}}
                 </span>
-                <span *ngIf="tvShow.next_episode_to_air.episode_number">
+                <span *ngIf="tvShow.next_episode_to_air?.episode_number">
                   E{{tvShow.next_episode_to_air.episode_number}}
                 </span>
 
